@@ -11,9 +11,10 @@ from gtts import gTTS
 from manim import *
 from moviepy.editor import VideoFileClip, AudioFileClip
 import glob
+import VirtualPainter as VP
 
 # OpenAI API Key (Replace with your actual API key)
-openai.api_key = "OPEN_AI_API_KEY"
+openai.api_key = "OPEN_API_KEY"
 
 # Initialize Text-to-Speech
 engine = pyttsx3.init()
@@ -153,6 +154,7 @@ def main():
         elif "teach me" in user_input or "learn" in user_input:
             topic = user_input.replace("teach me about", "").strip()
             speak(f"Got it! I'll create a Manim video about {topic}.")
+            VP.VirtualPainter()
             manim_script = generate_manim_script(topic)
             create_manim_video(manim_script)
             voiceover_script = generate_voiceover_script(topic)
